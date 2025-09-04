@@ -1,0 +1,53 @@
+# Face Symmetry Chrome Extension
+
+This is designed as a quick access tool for face reading using symmetry.
+
+I was inspired to create it by watching ProsopaInsights on YT and thought it would be a fun thing to have for experimentation. It's quite rudimentary and there are some quirks but I've been testing it for a few weeks and I think it is generally pretty acceptable.
+
+I'm not a programmer and this was made using Claude at my direction. So if you think you can make a better tool then please do and let me know.
+
+## Installation
+
+1. **Git clone this repo or download the zip**
+2. **Go to your hamburger menu in your Chrome or Chrome-based browser and click on Extensions > Manage Extensions**
+3. **Flip on Developer Mode**
+4. **Click Load Unpacked and direct it to where you cloned the files**
+
+## Usage
+
+**It's designed as an area screenshotter**
+
+1. Click on the tool icon and hit "Activate Tool"
+2. Then click drag on a face and it will make a box and you'll see two red lines on top and bottom which you can determine the centerline with
+3. You can also adjust those lines however it is likely to skew the face. In fact recommend you try to make the box as symmetrical as possible for best results
+
+Once you've got it, you can alternate between right and left sides and it is labeled as the person's left and right
+
+Then you can download the images if you want
+
+## Additional Notes
+
+- **I made it for faces but I spose you can use it for other mirroring too**
+- **Does tend to make some funny results**
+
+## Known Limitations
+
+This Chrome extension has browser security restrictions on some websites:
+- **YouTube, Reddit, and similar sites may block downloads** due to CORS policies
+- **Works best on regular image sites** like Google Images, social media, etc.
+
+## Alternative: Python Desktop Version
+
+For unrestricted use on any application or website, there's also a Python desktop version available that bypasses all browser limitations. Check the repository for `face_mirror_tool.py`.
+
+## Technical Details
+
+**How the mirroring works:**
+- **Left side**: Takes the left half of the selected area and flips it to create the right half
+- **Right side**: Takes the right half of the selected area and flips it to create the left half
+
+Perfect for exploring facial symmetry and seeing what faces would look like with perfectly matching features.
+
+## Contributing
+
+Issues and improvements welcome. This tool was built collaboratively with AI assistance to solve the problem of browser-based face symmetry analysis.
