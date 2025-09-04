@@ -30,16 +30,6 @@ Then you can download the images if you want
 - **I made it for faces but I spose you can use it for other mirroring too**
 - **Does tend to make some funny results**
 
-## Known Limitations
-
-This Chrome extension has browser security restrictions on some websites:
-- **YouTube, Reddit, and similar sites may block downloads** due to CORS policies
-- **Works best on regular image sites** like Google Images, social media, etc.
-
-## Alternative: Python Desktop Version
-
-For unrestricted use on any application or website, there's also a Python desktop version available that bypasses all browser limitations. Check the repository for `face_mirror_tool.py`.
-
 ## Technical Details
 
 **How the mirroring works:**
