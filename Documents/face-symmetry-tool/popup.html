@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            width: 200px;
+            padding: 15px;
+            font-family: Arial, sans-serif;
+        }
+        
+        button {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        #activateBtn {
+            background: #4CAF50;
+            color: white;
+        }
+        
+        #activateBtn:hover {
+            background: #45a049;
+        }
+        
+        #deactivateBtn {
+            background: #f44336;
+            color: white;
+        }
+        
+        #deactivateBtn:hover {
+            background: #da190b;
+        }
+        
+        .status {
+            text-align: center;
+            margin: 10px 0;
+            font-size: 12px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <h3>Face Symmetry Tool</h3>
+    
+    <div class="status" id="status">Click to activate</div>
+    
+    <button id="activateBtn">Activate Tool</button>
+    <button id="deactivateBtn">Deactivate Tool</button>
+    
+    <div style="margin-top: 15px; font-size: 11px; color: #888;">
+        <strong>Instructions:</strong><br>
+        1. Activate the tool<br>
+        2. Draw a box around a face<br>
+        3. Set the centerline<br>
+        4. Choose left or right flip
+    </div>
+    
+    <script src="popup.js"></script>
+</body>
+</html>
