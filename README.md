@@ -5,6 +5,7 @@ I was inspired to create it by watching ProsopaInsights on YT and thought it wou
 I'm not a programmer and this was made using Claude at my direction. So if you think you can make a better tool then please do and let me know.
 
 Installation:
+Git clone this repo or download the zip 
 Go to your hamburger menu in your Chrome or Chrome-based browser and click on Extensions > Manage Extensions
 Flip on Developer Mode
 Click Load Unpacked and direct it to where you cloned the files
