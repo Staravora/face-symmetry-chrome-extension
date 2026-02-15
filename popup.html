@@ -3,63 +3,200 @@
 <head>
     <style>
         body {
-            width: 200px;
-            padding: 15px;
+            width: 250px;
+            padding: 16px;
             font-family: Arial, sans-serif;
+            background: #1a1a2e;
+            color: #e0e0e0;
+            margin: 0;
         }
-        
+
+        h3 {
+            margin: 0 0 12px 0;
+            font-size: 16px;
+            color: #fff;
+        }
+
         button {
             width: 100%;
             padding: 10px;
-            margin: 5px 0;
+            margin: 4px 0;
             border: none;
-            border-radius: 5px;
+            border-radius: 6px;
             cursor: pointer;
             font-size: 14px;
+            transition: background 0.2s;
         }
-        
+
         #activateBtn {
-            background: #4CAF50;
+            background: #22c55e;
             color: white;
         }
-        
+
         #activateBtn:hover {
-            background: #45a049;
+            background: #1eab53;
         }
-        
+
         #deactivateBtn {
-            background: #f44336;
+            background: #ef4444;
             color: white;
         }
-        
+
         #deactivateBtn:hover {
-            background: #da190b;
+            background: #dc2626;
         }
-        
+
         .status {
             text-align: center;
             margin: 10px 0;
             font-size: 12px;
-            color: #666;
+            color: #9ca3af;
+        }
+
+        .instructions {
+            margin-top: 14px;
+            font-size: 11px;
+            color: #6b7280;
+            line-height: 1.5;
+        }
+
+        .instructions strong {
+            color: #9ca3af;
+        }
+
+        /* Settings section */
+        .settings-toggle {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 14px;
+            padding: 8px 0 4px 0;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            cursor: pointer;
+            font-size: 12px;
+            color: #9ca3af;
+            user-select: none;
+        }
+
+        .settings-toggle:hover {
+            color: #e0e0e0;
+        }
+
+        .settings-toggle .gear {
+            font-size: 14px;
+        }
+
+        .settings-toggle .arrow {
+            margin-left: auto;
+            font-size: 10px;
+            transition: transform 0.2s;
+        }
+
+        .settings-toggle .arrow.open {
+            transform: rotate(90deg);
+        }
+
+        .settings-body {
+            display: none;
+            padding: 10px 0 0 0;
+        }
+
+        .settings-body.open {
+            display: block;
+        }
+
+        .settings-body label {
+            display: block;
+            font-size: 11px;
+            color: #9ca3af;
+            margin-bottom: 4px;
+        }
+
+        .settings-body input[type="text"],
+        .settings-body input[type="password"] {
+            width: 100%;
+            padding: 7px 8px;
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 5px;
+            background: rgba(255,255,255,0.06);
+            color: #e0e0e0;
+            font-size: 12px;
+            box-sizing: border-box;
+            outline: none;
+        }
+
+        .settings-body input[type="text"]:focus,
+        .settings-body input[type="password"]:focus {
+            border-color: rgba(100, 200, 255, 0.5);
+        }
+
+        #saveKeyBtn {
+            width: auto;
+            padding: 6px 14px;
+            margin-top: 6px;
+            font-size: 12px;
+            background: #3b82f6;
+            color: white;
+            border-radius: 5px;
+        }
+
+        #saveKeyBtn:hover {
+            background: #2563eb;
+        }
+
+        .key-status {
+            font-size: 11px;
+            margin-top: 6px;
+            color: #6b7280;
+        }
+
+        .key-status.saved {
+            color: #22c55e;
+        }
+
+        .key-link {
+            display: inline-block;
+            margin-top: 6px;
+            font-size: 11px;
+            color: #60a5fa;
+            text-decoration: none;
+        }
+
+        .key-link:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
     <h3>Face Symmetry Tool</h3>
-    
+
     <div class="status" id="status">Click to activate</div>
-    
+
     <button id="activateBtn">Activate Tool</button>
     <button id="deactivateBtn">Deactivate Tool</button>
-    
-    <div style="margin-top: 15px; font-size: 11px; color: #888;">
+
+    <div class="instructions">
         <strong>Instructions:</strong><br>
         1. Activate the tool<br>
         2. Draw a box around a face<br>
         3. Set the centerline<br>
         4. Choose left or right flip
     </div>
-    
+
+    <div class="settings-toggle" id="settingsToggle">
+        <span class="gear">&#9881;</span>
+        <span>Settings</span>
+        <span class="arrow" id="settingsArrow">&#9654;</span>
+    </div>
+
+    <div class="settings-body" id="settingsBody">
+        <label for="apiKeyInput">Gemini API Key</label>
+        <input type="password" id="apiKeyInput" placeholder="Enter your API key">
+        <button id="saveKeyBtn">Save</button>
+        <div class="key-status" id="keyStatus">No API key saved</div>
+        <a class="key-link" href="https://aistudio.google.com/apikey" target="_blank">Get a free API key &rarr;</a>
+    </div>
+
     <script src="popup.js"></script>
 </body>
 </html>
