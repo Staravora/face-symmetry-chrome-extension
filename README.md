@@ -25,6 +25,12 @@ Once you've got it, you can alternate between right and left sides and it is lab
 
 Then you can download the images if you want
 
+## AI and Privacy
+
+The AI Summary feature sends the selected image to Google Gemini using your own API key.
+This may incur API charges depending on your account and usage.
+Use Google Cloud quotas/budgets to cap spending, and only proceed when you are comfortable with the prompt.
+
 ## Additional Notes
 
 - **I made it for faces but I spose you can use it for other mirroring too**

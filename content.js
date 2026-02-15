@@ -961,6 +961,13 @@ Keep your response to 2-3 short paragraphs of analysis. At the very end, add a o
         }
 
         async handleAiSummary(canvas, aiArea, aiBtn, mode = 'general') {
+            const proceed = window.confirm(
+                'This will send the selected image to Google Gemini for analysis and may incur API charges. Continue?'
+            );
+            if (!proceed) {
+                return;
+            }
+
             // Show loading state
             aiBtn.disabled = true;
             aiBtn.textContent = 'Analyzing...';
@@ -1064,6 +1071,7 @@ Keep your response to 2-3 short paragraphs of analysis. At the very end, add a o
                 <h3 style="margin: 0 0 14px 0; color: #fff; text-align: center; font-size: 16px;">Face Analysis</h3>
                 <div style="text-align: center; margin: 12px 0;">
                     <button class="result-download-btn" style="background: #22c55e; ${btnStyle}">Download</button>
+                    <button class="result-ai-btn" style="background: #8b5cf6; ${btnStyle}">AI Summary</button>
                     <button class="result-close-btn" style="background: #4b5563; ${btnStyle}">Close</button>
                 </div>
                 <div class="ai-result-area"></div>
@@ -1086,6 +1094,7 @@ Keep your response to 2-3 short paragraphs of analysis. At the very end, add a o
             // Add event listeners
             const downloadBtn = resultDiv.querySelector('.result-download-btn');
             const closeBtn = resultDiv.querySelector('.result-close-btn');
+            const aiBtn = resultDiv.querySelector('.result-ai-btn');
 
             if (downloadBtn) {
                 downloadBtn.addEventListener('click', (e) => {
@@ -1120,9 +1129,13 @@ Keep your response to 2-3 short paragraphs of analysis. At the very end, add a o
                 });
             }
 
-            // Auto-trigger AI analysis with a dummy disabled button for status
-            const dummyBtn = { disabled: false, textContent: '', style: {} };
-            this.handleAiSummary(canvas, aiArea, dummyBtn, 'general');
+            if (aiBtn) {
+                aiBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    this.handleAiSummary(canvas, aiArea, aiBtn, 'general');
+                });
+            }
         }
 
         reset() {
