@@ -898,15 +898,45 @@ Keep your response to 2-3 short paragraphs of analysis. At the very end, add a o
             const closeBtn = resultDiv.querySelector('.result-close-btn');
             const aiBtn = resultDiv.querySelector('.result-ai-btn');
 
-            const downloadHandler = (e) => {
+            const downloadHandler = async (e) => {
                 e.preventDefault();
                 e.stopPropagation();
 
                 try {
-                    const dataURL = canvas.toDataURL('image/png', 1.0);
+                    let dataURL;
+                    try {
+                        dataURL = canvas.toDataURL('image/png', 1.0);
+                    } catch (taintError) {
+                        // Canvas tainted by cross-origin image — fall back to tab capture
+                        const rect = canvas.getBoundingClientRect();
+                        const captureResponse = await new Promise((resolve) => {
+                            chrome.runtime.sendMessage({action: 'captureTab'}, resolve);
+                        });
+                        if (!captureResponse || !captureResponse.success) {
+                            alert('Download failed: Could not capture image.');
+                            return;
+                        }
+                        dataURL = await new Promise((resolve, reject) => {
+                            const img = new Image();
+                            img.onload = () => {
+                                const pixelRatio = window.devicePixelRatio || 1;
+                                const cropCanvas = document.createElement('canvas');
+                                cropCanvas.width = rect.width * pixelRatio;
+                                cropCanvas.height = rect.height * pixelRatio;
+                                const cropCtx = cropCanvas.getContext('2d');
+                                cropCtx.drawImage(img,
+                                    rect.left * pixelRatio, rect.top * pixelRatio,
+                                    rect.width * pixelRatio, rect.height * pixelRatio,
+                                    0, 0, cropCanvas.width, cropCanvas.height
+                                );
+                                resolve(cropCanvas.toDataURL('image/png', 1.0));
+                            };
+                            img.onerror = () => reject(new Error('capture failed'));
+                            img.src = captureResponse.dataUrl;
+                        });
+                    }
 
                     if (dataURL === 'data:,') {
-                        console.error('Canvas is empty or corrupted');
                         alert('Download failed: Image data is empty. Try processing again.');
                         return;
                     }
@@ -914,12 +944,9 @@ Keep your response to 2-3 short paragraphs of analysis. At the very end, add a o
                     const link = document.createElement('a');
                     link.download = `face-symmetry-${direction}-${Date.now()}.png`;
                     link.href = dataURL;
-
                     document.body.appendChild(link);
                     link.click();
                     document.body.removeChild(link);
-
-                    console.log(`Successfully downloaded ${direction} mirror image`);
 
                 } catch (error) {
                     console.error('Download failed:', error);
@@ -988,7 +1015,27 @@ Keep your response to 2-3 short paragraphs of analysis. At the very end, add a o
                         <div style="font-style: italic; color: #9ca3af; font-size: 12px; margin-bottom: 10px;">Note: This analysis is based on traditional physiognomic principles and should be taken as a general reference, not a definitive assessment.</div>
                         <div>${analysisText.replace(/\n/g, '<br>')}</div>
                     </div>
+                    <div style="text-align: center;">
+                        <button class="ai-download-btn" style="background: #22c55e; color: white; border: none; padding: 6px 12px; margin-top: 8px; border-radius: 4px; cursor: pointer; font-size: 12px;">Save Summary</button>
+                    </div>
                 `;
+
+                const aiDownloadBtn = aiArea.querySelector('.ai-download-btn');
+                if (aiDownloadBtn) {
+                    aiDownloadBtn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        const blob = new Blob([analysisText], { type: 'text/plain' });
+                        const url = URL.createObjectURL(blob);
+                        const link = document.createElement('a');
+                        link.download = `face-reading-${mode}-${Date.now()}.txt`;
+                        link.href = url;
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
+                        URL.revokeObjectURL(url);
+                    });
+                }
 
                 aiBtn.textContent = 'AI Summary';
                 aiBtn.disabled = false;
@@ -1097,11 +1144,41 @@ Keep your response to 2-3 short paragraphs of analysis. At the very end, add a o
             const aiBtn = resultDiv.querySelector('.result-ai-btn');
 
             if (downloadBtn) {
-                downloadBtn.addEventListener('click', (e) => {
+                downloadBtn.addEventListener('click', async (e) => {
                     e.preventDefault();
                     e.stopPropagation();
                     try {
-                        const dataURL = canvas.toDataURL('image/png', 1.0);
+                        let dataURL;
+                        try {
+                            dataURL = canvas.toDataURL('image/png', 1.0);
+                        } catch (taintError) {
+                            const rect = canvas.getBoundingClientRect();
+                            const captureResponse = await new Promise((resolve) => {
+                                chrome.runtime.sendMessage({action: 'captureTab'}, resolve);
+                            });
+                            if (!captureResponse || !captureResponse.success) {
+                                alert('Download failed: Could not capture image.');
+                                return;
+                            }
+                            dataURL = await new Promise((resolve, reject) => {
+                                const img = new Image();
+                                img.onload = () => {
+                                    const pixelRatio = window.devicePixelRatio || 1;
+                                    const cropCanvas = document.createElement('canvas');
+                                    cropCanvas.width = rect.width * pixelRatio;
+                                    cropCanvas.height = rect.height * pixelRatio;
+                                    const cropCtx = cropCanvas.getContext('2d');
+                                    cropCtx.drawImage(img,
+                                        rect.left * pixelRatio, rect.top * pixelRatio,
+                                        rect.width * pixelRatio, rect.height * pixelRatio,
+                                        0, 0, cropCanvas.width, cropCanvas.height
+                                    );
+                                    resolve(cropCanvas.toDataURL('image/png', 1.0));
+                                };
+                                img.onerror = () => reject(new Error('capture failed'));
+                                img.src = captureResponse.dataUrl;
+                            });
+                        }
                         if (dataURL === 'data:,') {
                             alert('Download failed: Image data is empty.');
                             return;
