@@ -24,19 +24,26 @@ I'm not a programmer and this was made using Claude at my direction. So if you t
 3. **Flip on Developer Mode**
 4. **Click Load Unpacked and direct it to where you cloned the files**
 
+Face mirroring works immediately — no extra setup needed. To enable the AI features (**Analyze Face**, **AI Summary**, and **Save Summary**), you'll need a Google Gemini API key:
+
+5. **Get a free API key from [Google AI Studio](https://aistudio.google.com/apikey)**
+6. **Click the extension icon → Settings (gear icon) → paste your key → Save**
+
+The free tier is more than enough for normal use.
+
 ## Usage
 
 1. Click on the extension icon and hit "Activate Tool"
 2. Click and drag to draw a box around a face — two red tick marks appear at top and bottom for setting the centerline
 3. Drag the tick marks to fine-tune the centerline (try to keep it as centered as possible for best results)
 4. Choose **Mirror Person's Left Side** or **Mirror Person's Right Side** to see the symmetrical version
-5. Hit **Analyze Face** for a general AI reading of the unmirrored face
-6. On any result, click **AI Summary** for a physiognomic reading, or **Download** to save the image
+5. Hit **Analyze Face** for a general AI reading of the unmirrored face *(requires API key)*
+6. On any result, click **AI Summary** for a physiognomic reading *(requires API key)*, or **Download** to save the image
 7. Use **Save Summary** to download the AI reading as a text file
 
 ## AI and Privacy
 
-The AI features send the selected image to Google Gemini **using your own API key** — set it in the extension popup under Settings. This may incur API charges depending on your account and usage. Use Google Cloud quotas/budgets to cap spending, and only proceed when you are comfortable with the prompt. A confirmation dialog appears before every AI call.
+The AI features send the selected face image to Google Gemini using your API key. This may incur charges depending on your account and usage — use Google Cloud quotas/budgets to cap spending. A confirmation dialog appears before every AI call.
 
 ## Additional Notes
 
