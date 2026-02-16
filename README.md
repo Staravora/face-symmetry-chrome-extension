@@ -6,6 +6,8 @@ I was inspired to create it by watching ProsopaInsights on YT and thought it wou
 
 I'm not a programmer and this was made using Claude at my direction. So if you think you can make a better tool then please do and let me know.
 
+![Face Symmetry Tool in action](GithubRefImage.png)
+
 ## Installation
 
 1. **Git clone this repo or download the zip**
