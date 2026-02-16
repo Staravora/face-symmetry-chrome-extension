@@ -1,9 +1,9 @@
-// Face Symmetry Tool - Full Implementation with YouTube Support
+// Phisognomous - Full Implementation with YouTube Support
 
 (function() {
     'use strict';
 
-    console.log('Face Symmetry Tool loading...');
+    console.log('Phisognomous loading...');
 
     class FaceSymmetryTool {
         constructor() {
@@ -24,7 +24,7 @@
         async activate() {
             if (this.isActive) return;
 
-            console.log('Activating Face Symmetry Tool...');
+            console.log('Activating Phisognomous...');
 
             await this.waitForBody();
 
@@ -35,13 +35,13 @@
             // Prevent page scrolling
             document.body.style.overflow = 'hidden';
 
-            console.log('Face Symmetry Tool activated');
+            console.log('Phisognomous activated');
         }
 
         deactivate() {
             if (!this.isActive) return;
 
-            console.log('Deactivating Face Symmetry Tool...');
+            console.log('Deactivating Phisognomous...');
 
             this.isActive = false;
             this.cleanup();
@@ -49,7 +49,7 @@
             // Restore page scrolling
             document.body.style.overflow = '';
 
-            console.log('Face Symmetry Tool deactivated');
+            console.log('Phisognomous deactivated');
         }
 
         waitForBody() {
@@ -942,7 +942,7 @@ Keep your response to 2-3 short paragraphs of analysis. At the very end, add a o
                     }
 
                     const link = document.createElement('a');
-                    link.download = `face-symmetry-${direction}-${Date.now()}.png`;
+                    link.download = `phisognomous-${direction}-${Date.now()}.png`;
                     link.href = dataURL;
                     document.body.appendChild(link);
                     link.click();
@@ -1028,7 +1028,7 @@ Keep your response to 2-3 short paragraphs of analysis. At the very end, add a o
                         const blob = new Blob([analysisText], { type: 'text/plain' });
                         const url = URL.createObjectURL(blob);
                         const link = document.createElement('a');
-                        link.download = `face-reading-${mode}-${Date.now()}.txt`;
+                        link.download = `phisognomous-reading-${mode}-${Date.now()}.txt`;
                         link.href = url;
                         document.body.appendChild(link);
                         link.click();
@@ -1184,7 +1184,7 @@ Keep your response to 2-3 short paragraphs of analysis. At the very end, add a o
                             return;
                         }
                         const link = document.createElement('a');
-                        link.download = `face-analysis-${Date.now()}.png`;
+                        link.download = `phisognomous-analysis-${Date.now()}.png`;
                         link.href = dataURL;
                         document.body.appendChild(link);
                         link.click();
@@ -1308,6 +1308,6 @@ Keep your response to 2-3 short paragraphs of analysis. At the very end, add a o
         });
     }
 
-    console.log('Face Symmetry Tool ready');
+    console.log('Phisognomous ready');
 
 })();

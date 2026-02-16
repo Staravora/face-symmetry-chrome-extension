@@ -104,5 +104,5 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
 // Handle extension installation
 chrome.runtime.onInstalled.addListener(() => {
-    console.log('Face Symmetry Tool installed');
+    console.log('Phisognomous installed');
 });

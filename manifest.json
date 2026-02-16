@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Face Symmetry Tool",
+  "name": "Phisognomous",
   "version": "1.4",
-  "description": "Draw a box around faces and create symmetrical versions by flipping left/right sides",
+  "description": "Face symmetry mirroring and AI-powered physiognomic analysis",
   
   "permissions": [
     "activeTab",
@@ -22,7 +22,7 @@
 
   "action": {
     "default_popup": "popup.html",
-    "default_title": "Face Symmetry Tool",
+    "default_title": "Phisognomous",
     "default_icon": {
       "16": "icon16.png",
       "48": "icon48.png",
