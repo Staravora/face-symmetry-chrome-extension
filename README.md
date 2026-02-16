@@ -36,7 +36,7 @@ I'm not a programmer and this was made using Claude at my direction. So if you t
 
 ## AI and Privacy
 
-The AI features send the selected image to Google Gemini using your own API key — set it in the extension popup under Settings. This may incur API charges depending on your account and usage. Use Google Cloud quotas/budgets to cap spending, and only proceed when you are comfortable with the prompt. A confirmation dialog appears before every AI call.
+The AI features send the selected image to Google Gemini **using your own API key** — set it in the extension popup under Settings. This may incur API charges depending on your account and usage. Use Google Cloud quotas/budgets to cap spending, and only proceed when you are comfortable with the prompt. A confirmation dialog appears before every AI call.
 
 ## Additional Notes
 
